@@ -12,10 +12,10 @@
 
 You can run the container with the following command:
 
-docker run --rm --user robot \
-  -v "local path to test suite folder":/home/robot/test \
-  -v "local path to test report folder":/home/robot/report \
-  mruuhamo/rfdocker 
+      docker run --rm --user robot \
+        -v "local path to test suite folder":/home/robot/test \
+        -v "local path to test report folder":/home/robot/report \
+        mruuhamo/rfdocker 
 
 ### Understanding the Dockerfile
 
