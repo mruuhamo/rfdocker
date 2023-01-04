@@ -1,4 +1,4 @@
-# Robot Framework simple Browser library docker
+# Robot Framework in simple Browser library docker image
 
 [Robot Framework](http://robotframework.org/) and [Browser library](https://robotframework-browser.org/) in a [Official Fedora](https://hub.docker.com/_/fedora/) Docker image.
 
