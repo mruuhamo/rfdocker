@@ -56,4 +56,4 @@ Container is designed to be run **without** [xvfb](https://www.x.org/releases/X1
 
 ## Inspirations
 
-Image is heavily inspired by both the original [Rfdocker](https://github.com/asyrjasalo/rfdocker) container and the excellent [Ppodgorsek](https://github.com/ppodgorsek/docker-robot-framework) robot framework container.
+Image is heavily inspired by both the original [Rfdocker](https://github.com/asyrjasalo/rfdocker) container by asyrjasalo and the excellent [Ppodgorsek](https://github.com/ppodgorsek/docker-robot-framework) robot framework container.
