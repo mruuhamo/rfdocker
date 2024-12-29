@@ -1,7 +1,7 @@
 # We take the fedora linux package
-FROM fedora:37
+FROM fedora:42
 
-LABEL description="Robot Framework in a Fedora 37 docker image, with Browser Library. Includes necessary tools to run Robot Framework Browser library in container. Inspired by asyrjasalo and ppodgorsek robot framework docker images"
+LABEL description="Robot Framework in a Fedora 42 docker image, with Browser Library. Includes necessary tools to run Robot Framework Browser library in container. Inspired by asyrjasalo and ppodgorsek robot framework docker images"
 
 # Declare robot env variables
 ENV NAME_UID="robot"
@@ -13,16 +13,15 @@ ENV UHOME="/home/robot"
 ENV UREPORT="/home/robot/report"
 ENV UTESTS="/home/robot/test"
 # Set installation dependency versions
-ENV CHROMIUM_VERSION 105.0.5195.125-2.fc37
-ENV XVFB_VERSION 1.20.14-8.fc37
-ENV RF_VERSION 6.0.1
-ENV BROWSER_LIBRARY_VERSION 14.3.0
+ENV CHROMIUM_VERSION=131.0.6778.204-1.fc42
+ENV RF_VERSION=7.1.1
+ENV BROWSER_LIBRARY_VERSION=14.3.0
 # Setup X Window Virtual Framebuffer
-ENV SCREEN_COLOUR_DEPTH 24
-ENV SCREEN_HEIGHT 1080
-ENV SCREEN_WIDTH 1920
+ENV SCREEN_COLOUR_DEPTH=24
+ENV SCREEN_HEIGHT=1080
+ENV SCREEN_WIDTH=1920
 # Set XVFB run value (0 == False, 1 == True)
-ENV XVFB_ENABLED 0
+ENV XVFB_ENABLED=0
 
 # Set root user for installations
 USER root
@@ -47,7 +46,7 @@ RUN dnf upgrade -y --refresh \
     npm \
     nodejs \
     python3-pip \
-    xorg-x11-server-Xvfb-${XVFB_VERSION}* \
+    xorg-x11-server-Xvfb \
 && dnf clean all
 
 # Updgrade pip
@@ -64,8 +63,10 @@ RUN rfbrowser init
 # These folders are writeable by anyone, to ensure the user can be changed on the command line.
 RUN mkdir -p ${UREPORT} \
   && mkdir -p ${UHOME} \
+  && mkdir -p ${UTESTS} \
   && chown ${HOST_UID}:${HOST_GID} ${UREPORT} \
   && chown ${HOST_UID}:${HOST_GID} ${UHOME} \
+  && chown ${HOST_UID}:${HOST_GID} ${UTESTS} \
   && chmod ugo+w ${UREPORT} ${UHOME}
 
 # Copy the run.sh binary
