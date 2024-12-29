@@ -2,15 +2,14 @@
 
 Library    Browser
 Library    OperatingSystem
-Library    Telnet
 
 *** Variables ***
 ${URL}                https://google.fi
-${Search_field}       /html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input
+${Search_field}       div > textarea    #textarea[title="Search"]
 ${input_text}         Savukoe
 ${Response_text}      Savukoe tarkoittaa erilaisia järjestelmien kokeita, jotka yleensä määrittävät, ovatko järjestelmät valmiita kovempiin kokeisiin.
-${SCREEN_HEIGHT}
-${SCREEN_WIDTH}
+${SCREEN_HEIGHT}      1080
+${SCREEN_WIDTH}       1920
 
 *** Test Cases ***
 
@@ -39,7 +38,7 @@ Basic search in google Browserlibrary
     [Documentation]
     ...    Search for Savukoe (Smoke test) in google
 
-    Fill Text     xpath=${Search_field}    ${input_text}
-    Press Keys    xpath=${Search_field}    Enter
+    Fill Text     ${Search_field}    ${input_text}    force=True
+    Press Keys    ${Search_field}    Enter
     Get Text      xpath=//*[@id="rso"]/div[1]/div    contains    ${Response_text}
     Take Screenshot
